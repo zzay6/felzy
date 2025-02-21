@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react"; // Icon untuk hamburger
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,11 +29,24 @@ export default function Navbar() {
 
         {/* Menu Desktop */}
         <ul className="hidden md:flex space-x-20 text-gray-700 items-center">
-          <li className="text-lg hover:text-blue-600 cursor-pointer font-bold">Home</li>
-          <li className="text-lg hover:text-blue-600 cursor-pointer font-bold">Blog</li>
-          <li className="text-lg hover:bg-blue-700 cursor-pointer font-bold text-white bg-blue-600 px-6 py-2 rounded-full">
+          <Link
+            href="/"
+            className="text-lg hover:text-blue-600 cursor-pointer font-bold"
+          >
+            Home
+          </Link>
+          <Link
+            href="/blog"
+            className="text-lg hover:text-blue-600 cursor-pointer font-bold"
+          >
+            Blog
+          </Link>
+          <Link
+            href="/contact-us"
+            className="text-lg hover:bg-blue-700 cursor-pointer font-bold text-white bg-blue-600 px-6 py-2 rounded-full"
+          >
             Hubungi Kami
-          </li>
+          </Link>
         </ul>
 
         <button
