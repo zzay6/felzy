@@ -9,7 +9,10 @@ export default function Footer() {
           style={{ display: "inline-block" }}
           className="px-14 py-1 bg-blue-600 rounded-full"
         ></div>
-        <h6 className="text-gray-400 text-lg pb-16 mt-10">&copy; Copyright All Rights Reversed | felzy.id</h6>
+        <h6 className="text-gray-400 text-lg pb-16 mt-10">
+          &copy; Copyright All Rights Reversed |{" "}
+          <a href="https://felzy.id">felzy.id</a>{" "}
+        </h6>
       </div>
     </div>
   );
