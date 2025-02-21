@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/navbar";
 import CardBlog from "@/components/cardBlog";
+import CursorFollower from "@/components/cursorFollower";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -12,6 +13,8 @@ export default function Home() {
   return (
     <div className={`${inter.variable}`}>
       <Navbar />
+
+      <CursorFollower />
 
       <div
         style={{
@@ -134,7 +137,7 @@ export default function Home() {
         }}
         className="text-center w-full"
       >
-        <div
+        {/* <div
           style={{
             background: "rgba(72, 182, 255,0.4)",
             height: "100px",
@@ -145,7 +148,7 @@ export default function Home() {
             margin: "0 auto",
             marginTop: "-190px",
           }}
-        ></div>
+        ></div> */}
       </div>
 
       <div
@@ -197,12 +200,24 @@ export default function Home() {
         ></div>
 
         <div
-          className="pl-24 py-20 w-full overflow-x-auto rounded-xl my-8"
+          className="w-full overflow-hidden rounded-xl my-8"
           style={{
             position: "relative",
+            height: "350px",
             background: "rgb(231, 207, 255, 0.3)",
           }}
-        ></div>
+        >
+          <div
+            style={{
+              width: "500px",
+              height: "500px",
+              marginTop: "-70px",
+              marginLeft: "auto",
+              transform: 'translateX(80px)'
+            }}
+            className="bg-gradient-to-b from-[#D9D9D9] via-[#B617FF] to-[#B617FF] rounded-full"
+          ></div>
+        </div>
       </div>
     </div>
   );
