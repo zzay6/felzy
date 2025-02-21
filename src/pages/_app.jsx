@@ -1,7 +1,7 @@
-import "@/styles/globals.css";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import CursorFollower from "@/components/cursorFollower";
+import "./../styles/globals.css";
+import Navbar from "./../components/Navbar";
+import Footer from "./../components/Footer";
+import CursorFollower from "./../components/CursorFollower";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
