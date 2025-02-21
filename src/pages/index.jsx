@@ -1,21 +1,9 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
-import Navbar from "@/components/navbar";
 import CardBlog from "@/components/cardBlog";
-import CursorFollower from "@/components/cursorFollower";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 export default function Home() {
   return (
-    <div className={`${inter.variable}`}>
-      <Navbar />
-
-      <CursorFollower />
-
+    <>
       <div
         style={{
           background: "rgba(69, 66, 255, 0.4)",
@@ -193,14 +181,52 @@ export default function Home() {
       </div>
 
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">Our Profile</h2>
+        <h2 className="text-4xl font-bold mb-4">Profile Kami</h2>
         <div
           style={{ display: "inline-block" }}
           className="px-14 py-1 bg-blue-600 rounded-full"
         ></div>
 
         <div
-          className="w-full overflow-hidden rounded-xl my-8"
+          className="w-full overflow-hidden rounded-xl my-8 flex"
+          style={{
+            position: "relative",
+            height: "350px",
+            background: "rgb(231, 207, 255, 0.3)",
+          }}
+        >
+          <div
+            className="text-left p-16 flex flex-col justify-around"
+            style={{
+              maxWidth: "1000px",
+            }}
+          >
+            <h5 className="text-3xl font-bold">Felissa Vivian M.</h5>
+            <p className="text-xl">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
+              odit laborum sunt, earum magnam esse quisquam alias vitae neque
+              officia, voluptatibus inventore deleniti id itaque ipsum. Magnam
+              nam enim voluptas?
+            </p>
+            <div>
+              <a className="hover:bg-blue-700 cursor-pointer font-bold text-white bg-blue-600 px-6 py-2 rounded-full">
+                Kenal Lebih
+              </a>
+            </div>
+          </div>
+          <div
+            style={{
+              width: "500px",
+              height: "500px",
+              marginTop: "-70px",
+              marginLeft: "auto",
+              transform: "translateX(80px)",
+            }}
+            className="bg-gradient-to-b from-[#D9D9D9] via-[#B617FF] to-[#B617FF] rounded-full"
+          ></div>
+        </div>
+        <div
+          className="w-full overflow-hidden rounded-xl my-8 flex"
           style={{
             position: "relative",
             height: "350px",
@@ -212,13 +238,31 @@ export default function Home() {
               width: "500px",
               height: "500px",
               marginTop: "-70px",
-              marginLeft: "auto",
-              transform: 'translateX(80px)'
+              transform: "translateX(-80px)",
             }}
-            className="bg-gradient-to-b from-[#D9D9D9] via-[#B617FF] to-[#B617FF] rounded-full"
+            className="bg-gradient-to-b from-[#D9D9D9] via-[#7A59FF] to-[#7A59FF] rounded-full"
           ></div>
+          <div
+            className="text-left p-16 flex flex-col justify-around"
+            style={{
+              maxWidth: "1000px",
+            }}
+          >
+            <h5 className="text-3xl font-bold">Zacky Zalfa F.R.</h5>
+            <p className="text-xl">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
+              odit laborum sunt, earum magnam esse quisquam alias vitae neque
+              officia, voluptatibus inventore deleniti id itaque ipsum. Magnam
+              nam enim voluptas?
+            </p>
+            <div>
+              <a className="hover:bg-blue-700 cursor-pointer font-bold text-white bg-blue-600 px-6 py-2 rounded-full">
+                Kenal Lebih
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
