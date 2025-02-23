@@ -1,5 +1,5 @@
 import { AlignJustify } from "lucide-react";
-import axios from "./../../../utils/axios";
+import axios from "@/utils/axios";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import CardBlog from "./../components/CardBlog";
+import CardBlog from "@/components/CardBlog";
 import { useEffect, useState } from "react";
-import axios from "./../utils/axios";
+import axios from "@/utils/axios";
 
 export async function getServerSideProps() {
   const articles = await axios.get("api/articles", {});
