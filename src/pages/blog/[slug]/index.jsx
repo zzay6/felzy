@@ -1,7 +1,25 @@
+import { AlignJustify } from "lucide-react";
+import axios from "./../../../utils/axios";
 import { useRouter } from "next/router";
+import ReactMarkdown from "react-markdown";
 
-export default function Page() {
+export async function getServerSideProps({ params }) {
+  const { slug } = params;
+  const articles = await axios.get(
+    "api/articles?filters[slug][$req]=" + slug + "&populate=*"
+  );
+  return {
+    props: {
+      title: "Felzy",
+      description: "Blog, portfolio, and tech insights",
+      article: articles.data.data[0],
+    },
+  };
+}
+
+export default function Page({ article }) {
   const router = useRouter();
+  console.log(article);
   return (
     <>
       <div
@@ -17,11 +35,14 @@ export default function Page() {
           className="mx-auto"
         >
           <h3 className="text-gray-500 mb-10 font-bold text-xl text-center flex gap-6 justify-center">
-            <span>Technology</span>|<span>Politics</span>|<span>Economics</span>
+            {article.categories.map((category, i) => (
+              <>
+                {i > 0 && "|"} <span>{category.name}</span>
+              </>
+            ))}
           </h3>
           <h1 className="text-4xl font-bold mb-10 text-center">
-            Ini Judul Artikel Misalnya Ini Tuh Panjang Terus Ada Lagi Di
-            Belakangnya
+            {article.title}
           </h1>
         </div>
         <h6></h6>
@@ -30,104 +51,11 @@ export default function Page() {
         <p
           style={{
             fontSize: "1.4em",
+            textAlign: "justify",
           }}
           className="my-20"
         >
-          <h1 className="font-bold text-4xl mb-5">Introduction</h1>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis
-          minima magni atque mollitia tempore accusantium, eos tenetur laborum
-          eum vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Debitis minima magni atque mollitia tempore
-          accusantium, eos tenetur laborum eum vitae possimus libero, alias
-          dolore odio rerum nemo omnis necessitatibus sint. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Debitis minima magni atque
-          mollitia tempore accusantium, eos tenetur laborum eum vitae possimus
-          libero, alias dolore odio rerum nemo omnis necessitatibus sint. Lorem,
-          ipsum dolor sit amet consectetur adipisicing elit. Debitis minima
-          magni atque mollitia tempore accusantium, eos tenetur laborum eum
-          vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Debitis minima magni atque mollitia tempore
-          accusantium, eos tenetur laborum eum vitae possimus libero, alias
-          dolore odio rerum nemo omnis necessitatibus sint. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Debitis minima magni atque
-          mollitia tempore accusantium, eos tenetur laborum eum vitae possimus
-          libero, alias dolore odio rerum nemo omnis necessitatibus sint. Lorem,
-          ipsum dolor sit amet consectetur adipisicing elit. Debitis minima
-          magni atque mollitia tempore accusantium, eos tenetur laborum eum
-          vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Debitis minima magni atque mollitia tempore
-          accusantium, eos tenetur laborum eum vitae possimus libero, alias
-          dolore odio rerum nemo omnis necessitatibus sint. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Debitis minima magni atque
-          mollitia tempore accusantium, eos tenetur laborum eum vitae possimus
-          libero, alias dolore odio rerum nemo omnis necessitatibus sint. Lorem,
-          ipsum dolor sit amet consectetur adipisicing elit. Debitis minima
-          magni atque mollitia tempore accusantium, eos tenetur laborum eum
-          vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Debitis minima magni atque mollitia tempore
-          accusantium, eos tenetur laborum eum vitae possimus libero, alias
-          dolore odio rerum nemo omnis necessitatibus sint. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Debitis minima magni atque
-          mollitia tempore accusantium, eos tenetur laborum eum vitae possimus
-          libero, alias dolore odio rerum nemo omnis necessitatibus sint. Lorem,
-          ipsum dolor sit amet consectetur adipisicing elit. Debitis minima
-          magni atque mollitia tempore accusantium, eos tenetur laborum eum
-          vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Debitis minima magni atque mollitia tempore
-          accusantium, eos tenetur laborum eum vitae possimus libero, alias
-          dolore odio rerum nemo omnis necessitatibus sint.Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Debitis minima magni atque
-          mollitia tempore accusantium, eos tenetur laborum eum vitae possimus
-          libero, alias dolore odio rerum nemo omnis necessitatibus sint. Lorem,
-          ipsum dolor sit amet consectetur adipisicing elit. Debitis minima
-          magni atque mollitia tempore accusantium, eos tenetur laborum eum
-          vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Debitis minima magni atque mollitia tempore
-          accusantium, eos tenetur laborum eum vitae possimus libero, alias
-          dolore odio rerum nemo omnis necessitatibus sint. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Debitis minima magni atque
-          mollitia tempore accusantium, eos tenetur laborum eum vitae possimus
-          libero, alias dolore odio rerum nemo omnis necessitatibus sint. Lorem,
-          ipsum dolor sit amet consectetur adipisicing elit. Debitis minima
-          magni atque mollitia tempore accusantium, eos tenetur laborum eum
-          vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Debitis minima magni atque mollitia tempore
-          accusantium, eos tenetur laborum eum vitae possimus libero, alias
-          dolore odio rerum nemo omnis necessitatibus sint. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Debitis minima magni atque
-          mollitia tempore accusantium, eos tenetur laborum eum vitae possimus
-          libero, alias dolore odio rerum nemo omnis necessitatibus sint.Lorem,
-          ipsum dolor sit amet consectetur adipisicing elit. Debitis minima
-          magni atque mollitia tempore accusantium, eos tenetur laborum eum
-          vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Debitis minima magni atque mollitia tempore
-          accusantium, eos tenetur laborum eum vitae possimus libero, alias
-          dolore odio rerum nemo omnis necessitatibus sint. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Debitis minima magni atque
-          mollitia tempore accusantium, eos tenetur laborum eum vitae possimus
-          libero, alias dolore odio rerum nemo omnis necessitatibus sint. Lorem,
-          ipsum dolor sit amet consectetur adipisicing elit. Debitis minima
-          magni atque mollitia tempore accusantium, eos tenetur laborum eum
-          vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Debitis minima magni atque mollitia tempore
-          accusantium, eos tenetur laborum eum vitae possimus libero, alias
-          dolore odio rerum nemo omnis necessitatibus sint. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Debitis minima magni atque
-          mollitia tempore accusantium, eos tenetur laborum eum vitae possimus
-          libero, alias dolore odio rerum nemo omnis necessitatibus sint. Lorem,
-          ipsum dolor sit amet consectetur adipisicing elit. Debitis minima
-          magni atque mollitia tempore accusantium, eos tenetur laborum eum
-          vitae possimus libero, alias dolore odio rerum nemo omnis
-          necessitatibus sint.
+          <ReactMarkdown>{article.description}</ReactMarkdown>
         </p>
       </div>
     </>

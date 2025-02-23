@@ -1,7 +1,21 @@
 import Image from "next/image";
 import CardBlog from "./../components/CardBlog";
+import { useEffect, useState } from "react";
+import axios from "./../utils/axios";
 
-export default function Home() {
+export async function getServerSideProps() {
+  const articles = await axios.get("api/articles", {});
+  return {
+    props: {
+      title: "Felzy",
+      description: "Blog, portfolio, and tech insights",
+      articles: articles.data?.data,
+    },
+  };
+}
+
+export default function Home({ articles }) {
+  console.log(articles);
   return (
     <>
       <div
@@ -170,11 +184,9 @@ export default function Home() {
               style={{ maxWidth: "1800px" }}
               className="w-full flex gap-10 overflow-x-auto pb-5 pl-3"
             >
-              <CardBlog />
-              <CardBlog />
-              <CardBlog />
-              <CardBlog />
-              <CardBlog />
+              {articles.map((article) => (
+                <CardBlog article={article} />
+              ))}
             </div>
           </div>
         </div>

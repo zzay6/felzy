@@ -1,20 +1,20 @@
 import Link from "next/link";
+import removeMarkdown from "remove-markdown";
 
-export default function CardBlog() {
+export default function CardBlog({ article }) {
   return (
-    <Link href="/blog/augmented-reality">
+    <Link href={`/blog/${article.slug}`}>
       <div
         className="rounded-lg shadow-lg overflow-hidden bg-white"
-        style={{ minHeight: "360px", minWidth: "300px" }}
+        style={{ minHeight: "360px", maxWidth: "300px" }}
       >
         <div className="h-44 bg-yellow-50">
           <img src="" className="w-full" alt="" />
         </div>
         <div className="p-5">
-          <h6 className="font-bold mt-1 text-xl">Example Title</h6>
+          <h6 className="font-bold mt-1 text-xl">{article.title}</h6>
           <p className="my-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-            dolores molestias quae ipsam incidunt porro.
+            {removeMarkdown(article.description.substr(0, 130))}
           </p>
           <span>2 Days Ago</span>
         </div>
