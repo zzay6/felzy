@@ -177,7 +177,7 @@ export default function Home({ articles }) {
               Hubungi Kami
             </a>
           </div>
-          <div className="overflow-hidden" style={{ height: "410px" }}>
+          <div className="overflow-hidden" style={{ height: "440px" }}>
             <div
               style={{ maxWidth: "1800px" }}
               className="w-full flex gap-10 overflow-x-auto pb-5 pl-3"
@@ -190,7 +190,7 @@ export default function Home({ articles }) {
         </div>
       </div>
 
-      <div className="container mx-auto text-center">
+      <div className="container mx-auto text-center px-4">
         <h2 className="text-4xl font-bold mb-4">Profile Kami</h2>
         <div
           style={{ display: "inline-block" }}
@@ -212,7 +212,7 @@ export default function Home({ articles }) {
             }}
           >
             <h5 className="text-3xl font-bold">Felissa Vivian M.</h5>
-            <p className="text-xl">
+            <p className="text-lg">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
               odit laborum sunt, earum magnam esse quisquam alias vitae neque
               officia, voluptatibus inventore deleniti id itaque ipsum. Magnam
@@ -259,7 +259,7 @@ export default function Home({ articles }) {
             }}
           >
             <h5 className="text-3xl font-bold">Zacky Zalfa F.R.</h5>
-            <p className="text-xl">
+            <p className="text-lg">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
               odit laborum sunt, earum magnam esse quisquam alias vitae neque
               officia, voluptatibus inventore deleniti id itaque ipsum. Magnam

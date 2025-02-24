@@ -1,10 +1,11 @@
 import axios from "@/utils/axios";
 import Content from "@/components/Content";
+import Link from "next/link";
 
 export async function getServerSideProps({ params }) {
   const { slug } = params;
   const articles = await axios.get(
-    "api/articles?filters[slug][$req]=" + slug + "&populate=*"
+    "api/articles?filters[slug]=" + slug + "&populate=*"
   );
   return {
     props: {
@@ -20,7 +21,7 @@ export default function Page({ article }) {
   return (
     <>
       <div
-        className="container mx-auto pt-36"
+        className="container mx-auto pt-28 px-4"
         style={{
           maxWidth: "1000px",
         }}
@@ -31,14 +32,14 @@ export default function Page({ article }) {
           }}
           className="mx-auto"
         >
-          <h3 className="text-gray-500 mb-10 font-bold text-xl text-center flex gap-6 justify-center">
+          <h3 className="text-gray-500 mb-10 font-bold text-xl text-center flex justify-center">
             {article.categories.map((category, i) => (
-              <>
-                {i > 0 && "|"} <span>{category.name}</span>
-              </>
+              <Link href={"/category/" + category.slug}>
+                {i > 0 && "|"}<span className="px-4 hover:text-gray-700">{category.name}</span>
+              </Link>
             ))}
           </h3>
-          <h1 className="text-4xl font-bold mb-10 text-center">
+          <h1 className="text-2xl font-bold mb-10 text-center">
             {article.title}
           </h1>
         </div>
@@ -46,15 +47,14 @@ export default function Page({ article }) {
 
         <img src={baseURL + article.cover.url} className="w-full" alt="" />
 
-        <p
+        <div
           style={{
-            fontSize: "1.4em",
-            textAlign: "justify",
+            fontSize: "1.1em",
           }}
-          className="my-20"
+          className="my-10"
         >
-          <Content content={article.Content} />
-        </p>
+          <Content content={article.content} />
+        </div>
       </div>
     </>
   );
