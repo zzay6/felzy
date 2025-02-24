@@ -17,7 +17,7 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function Page({ article }) {
-  const baseURL = process.env.NEXT_PUBLIC_STRAPI_BASEURL;
+  const baseURL = "/api/img?slug=";
   return (
     <>
       <div
@@ -35,7 +35,10 @@ export default function Page({ article }) {
           <h3 className="text-gray-500 mb-10 font-bold text-xl text-center flex justify-center">
             {article.categories.map((category, i) => (
               <Link href={"/category/" + category.slug}>
-                {i > 0 && "|"}<span className="px-4 hover:text-gray-700">{category.name}</span>
+                {i > 0 && "|"}
+                <span className="px-4 hover:text-gray-700">
+                  {category.name}
+                </span>
               </Link>
             ))}
           </h3>
@@ -45,7 +48,7 @@ export default function Page({ article }) {
         </div>
         <h6></h6>
 
-        <img src={baseURL + article.cover.url} className="w-full" alt="" />
+        <img src={baseURL + article.slug} className="w-full" alt="" />
 
         <div
           style={{

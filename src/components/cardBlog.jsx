@@ -14,15 +14,23 @@ export default function CardBlog({ article, className }) {
     "bg-orange-600",
   ];
 
-  const baseURL = process.env.NEXT_PUBLIC_STRAPI_BASEURL;
+  const baseURL = "/api/img?slug=";
   return (
     <Link href={`/blog/${article.slug}`}>
       <div
-        className={"rounded-lg shadow-lg overflow-hidden bg-white " + className}
-        style={{ minHeight: "360px", maxWidth: "300px" }}
+        className={"rounded-lg shadow-lg overflow-hidden " + className}
+        style={{
+          minHeight: "360px",
+          maxWidth: "300px",
+          background: "rgb(255, 255, 255, 0.3)",
+        }}
       >
-        <div className="h-44 bg-yellow-50">
-          <img src={baseURL + article.cover?.url} className="h-full" alt="" />
+        <div className="h-44">
+          <img
+            src={baseURL + article.slug}
+            className="h-full w-full object-cover"
+            alt=""
+          />
         </div>
         <div className="p-5">
           <h6 className="font-bold mt-1 text-md text-purple-600">
