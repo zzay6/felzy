@@ -4,23 +4,30 @@ import SearcInput from "@/components/SearchInput";
 import axios from "@/utils/axios";
 import Link from "next/link";
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }) {
+  const { slug } = params;
   const articles = await axios.get(
-    "api/articles?populate=*&sort=createdAt:desc",
+    "api/articles?filters[categories][slug][$eq]=" +
+      slug +
+      "&populate=*&sort=createdAt:desc",
     {}
   );
+
+  console.log(articles);
+
   const categories = await axios.get("api/categories?populate=*", {});
   return {
     props: {
+      slug,
       title: "Felzy",
       description: "Blog, portfolio, and tech insights",
-      articles: articles.data?.data,
-      categories: categories.data?.data,
+      articles: articles?.data?.data,
+      categories: categories?.data?.data,
     },
   };
 }
 
-export default function Blog({ articles, categories }) {
+export default function Category({ articles, categories, slug }) {
   return (
     <>
       <div
@@ -30,7 +37,9 @@ export default function Blog({ articles, categories }) {
         }}
       >
         <div className="flex justify-between mb-5">
-          <h1 className="text-4xl font-bold w-full">JELAJAHI BLOG</h1>
+          <h1 className="text-4xl font-bold">
+            {categories.find((category) => category.slug === slug)?.name}
+          </h1>
           <div
             className="w-full ml-auto"
             style={{
@@ -46,12 +55,15 @@ export default function Blog({ articles, categories }) {
           }}
           className=""
         >
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <Link
-              href={"/category/" + category.slug}
-              className="text-lg font-bold pr-10"
+              href={"/category/" + category?.slug}
+              className={
+                "text-lg font-bold pr-10 " +
+                (category?.slug === slug && "text-blue-600")
+              }
             >
-              {category.name}
+              {category?.name}
             </Link>
           ))}
         </div>
@@ -71,9 +83,13 @@ export default function Blog({ articles, categories }) {
               />
             )}
             <div className="grid grid-cols-3 gap-6">
-              {articles.map(
-                (article, i) =>
-                  i > 0 && <CardBlog article={article} className="mb-5" />
+              {articles.length > 0 ? (
+                articles?.map(
+                  (article, i) =>
+                    i > 0 && <CardBlog article={article} className="mb-5" />
+                )
+              ) : (
+                <></>
               )}
             </div>
           </div>
@@ -83,9 +99,13 @@ export default function Blog({ articles, categories }) {
               maxWidth: "500px",
             }}
           >
-            {articles.map(
-              (article, i) =>
-                i > 0 && <CardSide article={article} className="" />
+            {articles.length > 0 ? (
+              articles?.map(
+                (article, i) =>
+                  i > 0 && <CardSide article={article} className="" />
+              )
+            ) : (
+              <></>
             )}
           </div>
         </div>

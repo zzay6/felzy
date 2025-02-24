@@ -1,4 +1,3 @@
-import Image from "next/image";
 import CardBlog from "@/components/CardBlog";
 import axios from "@/utils/axios";
 import Link from "next/link";
@@ -181,10 +180,10 @@ export default function Home({ articles }) {
               Baca Disini
             </Link>
           </div>
-          <div className="overflow-hidden" style={{ height: "440px" }}>
+          <div className="overflow-y-hidden" style={{ height: "440px" }}>
             <div
               style={{ maxWidth: "1800px" }}
-              className="w-full flex gap-10 overflow-x-auto pb-5 pl-3"
+              className="w-full flex gap-6 overflow-x-auto pb-5 pl-3 mr-10"
             >
               {articles.map((article) => (
                 <CardBlog article={article} />

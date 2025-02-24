@@ -1,5 +1,3 @@
-import ReactMarkdown from "react-markdown";
-
 export default function Content({ content, isSub }) {
   if (typeof content == "array") {
     if (isSub) {

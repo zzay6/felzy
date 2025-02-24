@@ -8,7 +8,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolling(window.scrollY > 200);
+      setScrolling(window.scrollY > 400);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -17,15 +17,17 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 py-3`}
+      className={(scrolling ? "fixed" : "absolute") + ` top-0 w-full z-50 py-3`}
       style={{
-        transition: "all 0.4s ease",
-        background: `rgb(69, 66, 255, ${scrolling ? "0.7" : "0"})`,
+        transition: "all 0.8s",
+        background: `rgb(22, 25, 71, ${scrolling ? "0.7" : "0"})`,
       }}
     >
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
-        <div className="text-2xl font-bold text-black">Felzy</div>
+        <div className={"text-2xl font-bold " + (scrolling && "text-blue-100")}>
+          Felzy
+        </div>
 
         {/* Menu Desktop */}
         <ul className="hidden md:flex space-x-20 text-gray-700 items-center">
@@ -33,7 +35,7 @@ export default function Navbar() {
             href="/"
             className={
               "text-lg hover:text-blue-600 cursor-pointer font-bold " +
-              (scrolling && "text-white")
+              (scrolling && "text-blue-100")
             }
           >
             Home
@@ -42,7 +44,7 @@ export default function Navbar() {
             href="/blog"
             className={
               "text-lg hover:text-blue-600 cursor-pointer font-bold " +
-              (scrolling && "text-white")
+              (scrolling && "text-blue-100")
             }
           >
             Blog
