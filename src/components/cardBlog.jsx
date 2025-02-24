@@ -3,7 +3,7 @@ import removeMarkdown from "remove-markdown";
 import Content from "./Content";
 import timeAgo from "@/utils/timeAgo";
 
-export default function CardBlog({ article }) {
+export default function CardBlog({ article, className }) {
   const colors = [
     "bg-purple-600",
     "bg-pink-600",
@@ -18,7 +18,7 @@ export default function CardBlog({ article }) {
   return (
     <Link href={`/blog/${article.slug}`}>
       <div
-        className="rounded-lg shadow-lg overflow-hidden bg-white"
+        className={"rounded-lg shadow-lg overflow-hidden bg-white " + className}
         style={{ minHeight: "360px", maxWidth: "300px" }}
       >
         <div className="h-44 bg-yellow-50">

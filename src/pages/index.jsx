@@ -1,6 +1,7 @@
 import Image from "next/image";
 import CardBlog from "@/components/CardBlog";
 import axios from "@/utils/axios";
+import Link from "next/link";
 
 export async function getServerSideProps() {
   const articles = await axios.get("api/articles?populate=*", {});
@@ -173,9 +174,12 @@ export default function Home({ articles }) {
               Tulisan Yang Kami Buat
             </h5>
 
-            <a className="hover:bg-blue-700 cursor-pointer font-bold text-white bg-blue-600 px-6 py-2 rounded-full">
-              Hubungi Kami
-            </a>
+            <Link
+              href="/blog"
+              className="hover:bg-blue-700 cursor-pointer font-bold text-white bg-blue-600 px-6 py-2 rounded-full"
+            >
+              Baca Disini
+            </Link>
           </div>
           <div className="overflow-hidden" style={{ height: "440px" }}>
             <div
