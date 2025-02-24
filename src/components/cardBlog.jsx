@@ -18,7 +18,7 @@ export default function CardBlog({ article, className }) {
   return (
     <Link href={`/blog/${article.slug}`}>
       <div
-        className={"rounded-lg shadow-lg overflow-hidden " + className}
+        className={"rounded-lg shadow-sm overflow-hidden " + className}
         style={{
           minHeight: "360px",
           maxWidth: "300px",
