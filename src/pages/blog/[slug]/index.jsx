@@ -1,25 +1,45 @@
 import axios from "@/utils/axios";
 import Content from "@/components/Content";
 import Link from "next/link";
+import Head from "next/head";
 
 export async function getServerSideProps({ params }) {
   const { slug } = params;
   const articles = await axios.get(
     "api/articles?filters[slug]=" + slug + "&populate=*"
   );
+
+  const article = articles.data.data[0];
+
   return {
     props: {
-      title: "Felzy",
-      description: "Blog, portfolio, and tech insights",
-      article: articles.data.data[0],
+      title: article.title + " | Felzy.id",
+      description: article.description,
+      article,
     },
   };
 }
 
-export default function Page({ article }) {
+export default function Page({ title, description, article }) {
   const baseURL = "/api/img?slug=";
   return (
     <>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta
+          name="keywords"
+          content={article.categories.map((category) => category.name)}
+        />
+        <meta
+          name="author"
+          content={article.authors.map((author) => author.name)}
+        />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content="/og-image.jpg" />
+        <meta property="og:type" content="website" />
+      </Head>
       <div
         className="container mx-auto pt-28 px-4"
         style={{
