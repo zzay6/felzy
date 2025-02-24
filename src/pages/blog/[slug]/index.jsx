@@ -1,7 +1,5 @@
-import { AlignJustify } from "lucide-react";
 import axios from "@/utils/axios";
-import { useRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
+import Content from "@/components/Content";
 
 export async function getServerSideProps({ params }) {
   const { slug } = params;
@@ -18,8 +16,7 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function Page({ article }) {
-  const router = useRouter();
-  console.log(article);
+  const baseURL = process.env.NEXT_PUBLIC_STRAPI_BASEURL;
   return (
     <>
       <div
@@ -46,7 +43,8 @@ export default function Page({ article }) {
           </h1>
         </div>
         <h6></h6>
-        <div className="bg-yellow-300 h-96"></div>
+
+        <img src={baseURL + article.cover.url} className="w-full" alt="" />
 
         <p
           style={{
@@ -55,7 +53,7 @@ export default function Page({ article }) {
           }}
           className="my-20"
         >
-          <ReactMarkdown>{article.description}</ReactMarkdown>
+          <Content content={article.Content} />
         </p>
       </div>
     </>
