@@ -29,7 +29,7 @@ export default function Blog({ articles, categories }) {
           maxWidth: "",
         }}
       >
-        <div className="flex justify-between mb-5">
+        <div className="md:flex justify-between mb-5">
           <h1 className="text-4xl font-bold w-full">JELAJAHI BLOG</h1>
           <div
             className="w-full ml-auto"
@@ -56,7 +56,7 @@ export default function Blog({ articles, categories }) {
           ))}
         </div>
 
-        <div className="flex gap-6 pt-5">
+        <div className="md:flex gap-6 pt-5">
           <div
             style={{
               widows: "auto",
@@ -70,10 +70,10 @@ export default function Blog({ articles, categories }) {
                 isRecommend={true}
               />
             )}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {articles.map(
                 (article, i) =>
-                  i > 0 && <CardBlog article={article} className="mb-5" />
+                  i > 0 && <CardBlog article={article} className="mb-1" />
               )}
             </div>
           </div>

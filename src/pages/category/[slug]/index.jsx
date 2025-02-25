@@ -13,8 +13,6 @@ export async function getServerSideProps({ params }) {
     {}
   );
 
-  console.log(articles);
-
   const categories = await axios.get("api/categories?populate=*", {});
   return {
     props: {
@@ -36,7 +34,7 @@ export default function Category({ articles, categories, slug }) {
           maxWidth: "",
         }}
       >
-        <div className="flex justify-between mb-5">
+        <div className="md:flex justify-between mb-5">
           <h1 className="text-4xl font-bold">
             {categories.find((category) => category.slug === slug)?.name}
           </h1>
@@ -68,7 +66,7 @@ export default function Category({ articles, categories, slug }) {
           ))}
         </div>
 
-        <div className="flex gap-6 pt-5">
+        <div className="md:flex gap-6 pt-5">
           <div
             style={{
               widows: "auto",
@@ -82,11 +80,11 @@ export default function Category({ articles, categories, slug }) {
                 isRecommend={true}
               />
             )}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {articles.length > 0 ? (
                 articles?.map(
                   (article, i) =>
-                    i > 0 && <CardBlog article={article} className="mb-5" />
+                    i > 0 && <CardBlog article={article} className="mb-1" />
                 )
               ) : (
                 <></>

@@ -18,7 +18,7 @@ export default function CardBlog({ article, className, isRecommend }) {
       <div
         className={"rounded-lg shadow-sm overflow-hidden " + className}
         style={{
-          background: "rgb(255, 255, 255, 0.3)",
+          background: "rgb(255, 255, 255, 0.4)",
         }}
       >
         <div className={isRecommend ? "h-[360px]" : "h-44"}>
@@ -46,13 +46,19 @@ export default function CardBlog({ article, className, isRecommend }) {
             );
           })}
 
-          <p className="my-3 text-sm">
+          <p
+            className={
+              (!isRecommend ? "hidden" : "") + " my-3 text-sm md:block"
+            }
+          >
             {article?.description?.substr(0, isRecommend ? 500 : 100)}{" "}
             {article?.description?.length > (isRecommend ? 500 : 100) && ".."}
           </p>
-          <i className="text-sm">
-            <i className="far fa-clock"></i> {timeAgo(article?.createdAt)}
-          </i>
+          <div>
+            <i className="text-sm">
+              <i className="far fa-clock"></i> {timeAgo(article?.createdAt)}
+            </i>
+          </div>
         </div>
       </div>
     </Link>

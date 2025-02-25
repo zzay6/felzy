@@ -68,7 +68,7 @@ export default function SearcInput() {
       />
       {typing && (
         <div
-          className="max-h-60 absolute mt-2 shadow rounded p-5 w-full overflow-y-auto"
+          className="max-h-60 absolute mt-2 shadow rounded p-5 md:w-full overflow-y-auto"
           style={{
             maxWidth: "500px",
             background: "rgb(233, 237, 255)",
@@ -82,7 +82,7 @@ export default function SearcInput() {
               return (
                 <Link
                   key={suggest.title}
-                  href={"?keyword=" + suggest.title}
+                  href={"/blog?keyword=" + suggest.title}
                   className="hover:text-blue-400 text-gray-600 mb-3 w-full block"
                 >
                   {parts.map((part, index) =>

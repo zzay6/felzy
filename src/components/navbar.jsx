@@ -74,15 +74,24 @@ export default function Navbar() {
         }}
       >
         <ul className="flex flex-col space-y-4 p-6 text-gray-700">
-          <li className="hover:text-gray-200 text-white cursor-pointer">
+          <Link
+            href={"/"}
+            className="hover:text-gray-200 text-white cursor-pointer"
+          >
             Home
-          </li>
-          <li className="hover:text-gray-200 text-white cursor-pointer">
+          </Link>
+          <Link
+            href={"/blog"}
+            className="hover:text-gray-200 text-white cursor-pointer"
+          >
             Blog
-          </li>
-          <li className="hover:text-gray-200 text-white cursor-pointer">
+          </Link>
+          <Link
+            href={"/contact-us"}
+            className="hover:text-gray-200 text-white cursor-pointer"
+          >
             Hubungi Kami
-          </li>
+          </Link>
         </ul>
       </div>
     </nav>
