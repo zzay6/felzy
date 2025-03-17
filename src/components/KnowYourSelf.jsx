@@ -64,10 +64,11 @@ export function KnowYourSelf() {
     );
 
     setProporsition(prop);
-
-    setWhich(prop.d > prop.p ? "d" : "p");
   }, [answers]);
 
+  useEffect(() => {
+    setWhich(() => ((proporsition.d || 0) > (proporsition.p || 0) ? "d" : "p"));
+  }, [proporsition]);
   return (
     <>
       {questionTab ? (
@@ -87,10 +88,10 @@ export function KnowYourSelf() {
               }}
             >
               <h1 className="text-center font-bold text-4xl mb-5">
-                Kamu Tim {which === "d" ? "Desainer!" : "Coder!"}
+                Kamu Tim {which == "d" ? "Desainer!" : "Coder!"}
               </h1>
               <div className="text-center">
-                {which === "d" ? (
+                {which == "d" ? (
                   <img
                     src="/assets/images/ember.png"
                     className="h-[250px] mx-auto -mb-14"
