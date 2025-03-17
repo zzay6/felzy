@@ -1,11 +1,13 @@
 import CardBlog from "@/components/CardBlog";
 import CardSide from "@/components/CardSide";
+import { Layout } from "@/components/Layout";
 import SearcInput from "@/components/SearchInput";
 import axios from "@/utils/axios";
 import Link from "next/link";
 
 export async function getServerSideProps({ params }) {
   const { slug } = params;
+  const global = await axios.get("api/global?populate=favicon");
   const articles = await axios.get(
     "api/articles?filters[categories][slug][$eq]=" +
       slug +
@@ -19,15 +21,16 @@ export async function getServerSideProps({ params }) {
       slug,
       title: "Felzy",
       description: "Blog, portfolio, and tech insights",
+      global: global?.data?.data,
       articles: articles?.data?.data,
       categories: categories?.data?.data,
     },
   };
 }
 
-export default function Category({ articles, categories, slug }) {
+export default function Category({ articles, categories, slug, global }) {
   return (
-    <>
+    <Layout global={global}>
       <div
         className="container mx-auto pt-28 px-4"
         style={{
@@ -48,9 +51,11 @@ export default function Category({ articles, categories, slug }) {
           </div>
         </div>
         <div
-          style={{
-            // background: "rgb(255, 255, 255, 0.6)",
-          }}
+          style={
+            {
+              // background: "rgb(255, 255, 255, 0.6)",
+            }
+          }
           className=""
         >
           {categories?.map((category) => (
@@ -108,6 +113,6 @@ export default function Category({ articles, categories, slug }) {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }

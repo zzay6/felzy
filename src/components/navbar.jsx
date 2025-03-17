@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react"; // Icon untuk hamburger
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Navbar({ global }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
 
@@ -15,19 +15,24 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const logo = "/api/logo";
+
   return (
     <nav
       className={(scrolling ? "fixed" : "absolute") + ` top-0 w-full z-50 py-3`}
       style={{
         transition: "all 0.8s",
-        background: `rgb(22, 25, 71, ${scrolling ? "0.7" : "0"})`,
+        background: `rgb(167, 212, 211, ${scrolling ? "0.7" : "0"})`,
       }}
     >
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
-        <div className={"text-2xl font-bold " + (scrolling && "text-blue-100")}>
-          Felzy
-        </div>
+        <Link href={"/"} className="flex items-center">
+          <img src={logo} className="w-16" />
+          <div className={"text-2xl font-bold " + (scrolling && "text-black")}>
+            {global?.siteName}
+          </div>
+        </Link>
 
         {/* Menu Desktop */}
         <ul className="hidden md:flex space-x-20 text-gray-700 items-center">
@@ -35,7 +40,7 @@ export default function Navbar() {
             href="/"
             className={
               "text-lg hover:text-blue-600 cursor-pointer font-bold " +
-              (scrolling && "text-blue-100")
+              (scrolling && "text-black")
             }
           >
             Home
@@ -44,7 +49,7 @@ export default function Navbar() {
             href="/blog"
             className={
               "text-lg hover:text-blue-600 cursor-pointer font-bold " +
-              (scrolling && "text-blue-100")
+              (scrolling && "text-black")
             }
           >
             Blog

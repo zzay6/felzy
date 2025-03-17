@@ -1,25 +1,27 @@
-export default function Footer() {
+export default function Footer({ global }) {
+  const logo = "/api/logo";
   return (
-    <footer className="bg-white pt-10 mt-20">
-      <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+    <footer
+      className="pt-10 mt-20 bg-gradient-to-t from-white via-white to-[#EAF1FF]"
+      // style={{ background: "rgb(255,255,255, 0.6)" }}
+    >
+      <div className="mx-auto w-full container p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <a href="/" className="flex items-center mb-5">
+              <img src={logo} className="w-16" />
               <span className="self-center text-2xl font-semibold whitespace-nowrap ">
-                Felzy
+                {global.siteName}
               </span>
             </a>
 
             <p className=" mb-5 text-sm" style={{ maxWidth: "400px" }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quas
-              cum obcaecati nobis quaerat quo ducimus veniam sint aliquid. Quis
-              expedita possimus vitae eveniet, illo dolorem perferendis deserunt
-              ex doloribus.
+              {global.siteDescription}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-40">
             <div>
-              <h2 className="mb-6 text-sm font-semibold uppercase ">Halaman</h2>
+              <h2 className="mb-6 text-sm font-semibold uppercase ">Sitemap</h2>
               <ul className="text-gray-400 font-medium">
                 <li className="mb-4">
                   <a href="/" className="hover:underline">
@@ -57,7 +59,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <hr className="my-6 border-gray-100 sm:mx-auto border-gray-700 lg:my-8" />
+        <hr className="my-6 border-gray-300 sm:mx-auto lg:my-8" />
         <div className="md:flex md:items-center text-center md:justify-between mb-32 md:mb-0">
           <span className="text-sm sm:text-center text-gray-400">
             © 2025{" "}

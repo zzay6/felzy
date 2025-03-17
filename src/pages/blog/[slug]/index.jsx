@@ -2,9 +2,11 @@ import axios from "@/utils/axios";
 import Content from "@/components/Content";
 import Link from "next/link";
 import Head from "next/head";
+import { Layout } from "@/components/Layout";
 
 export async function getServerSideProps({ params }) {
   const { slug } = params;
+  const global = await axios.get("api/global?populate=favicon");
   const articles = await axios.get(
     "api/articles?filters[slug]=" + slug + "&populate=*"
   );
@@ -13,6 +15,7 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
+      global: global?.data?.data,
       title: article.title + " | Felzy.id",
       description: article.description,
       article,
@@ -20,10 +23,10 @@ export async function getServerSideProps({ params }) {
   };
 }
 
-export default function Page({ title, description, article }) {
+export default function Page({ title, description, article, global }) {
   const baseURL = "/api/img?slug=";
   return (
-    <>
+    <Layout global={global}>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -79,6 +82,6 @@ export default function Page({ title, description, article }) {
           <Content content={article.content} />
         </div>
       </div>
-    </>
+    </Layout>
   );
 }

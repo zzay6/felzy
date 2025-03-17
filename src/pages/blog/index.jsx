@@ -1,10 +1,12 @@
 import CardBlog from "@/components/CardBlog";
 import CardSide from "@/components/CardSide";
+import { Layout } from "@/components/Layout";
 import SearcInput from "@/components/SearchInput";
 import axios from "@/utils/axios";
 import Link from "next/link";
 
 export async function getServerSideProps() {
+  const global = await axios.get("api/global?populate=favicon");
   const articles = await axios.get(
     "api/articles?populate=*&sort=createdAt:desc",
     {}
@@ -12,6 +14,7 @@ export async function getServerSideProps() {
   const categories = await axios.get("api/categories?populate=*", {});
   return {
     props: {
+      global: global?.data?.data,
       title: "Felzy",
       description: "Blog, portfolio, and tech insights",
       articles: articles.data?.data,
@@ -20,9 +23,9 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Blog({ articles, categories }) {
+export default function Blog({ articles, categories, global }) {
   return (
-    <>
+    <Layout global={global}>
       <div
         className="container mx-auto pt-28 px-4"
         style={{
@@ -41,9 +44,11 @@ export default function Blog({ articles, categories }) {
           </div>
         </div>
         <div
-          style={{
-            // background: "rgb(255, 255, 255, 0.6)",
-          }}
+          style={
+            {
+              // background: "rgb(255, 255, 255, 0.6)",
+            }
+          }
           className=""
         >
           {categories.map((category) => (
@@ -90,6 +95,6 @@ export default function Blog({ articles, categories }) {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }

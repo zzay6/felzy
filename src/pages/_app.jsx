@@ -1,7 +1,5 @@
+import { AppProvider } from "@/context/AppProvider";
 import "@/styles/globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import CursorFollower from "@/components/CursorFollower";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -12,10 +10,9 @@ const inter = Inter({
 export default function App({ Component, pageProps }) {
   return (
     <div className={`${inter.variable}`}>
-      <Navbar />
-      <CursorFollower />
+      {/* <AppProvider> */}
       <Component {...pageProps} />
-      <Footer />
+      {/* </AppProvider> */}
     </div>
   );
 }
