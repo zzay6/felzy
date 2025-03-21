@@ -6,3 +6,5 @@ export default axios.create({
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_KEY}`,
   },
 });
+
+
